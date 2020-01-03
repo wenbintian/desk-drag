@@ -1,0 +1,16 @@
+.component_example{height: 100%}
+.component_example h1,.component_example h2,.component_example h3{font-weight: normal;}
+.component_example h2{color: #ddd;}
+.component_example .item{border: 1px solid #ddd; margin-top: 40px;  }
+.component_example .item>h4{margin: 0; padding: 10px;}
+.component_example .item table thead{background: #eaeefb; text-align: left;}
+.component_example .item table td{border-bottom: 1px solid #eaeefb;}
+.component_example .item-detail{position: relative;}
+.component_example .item-toggle{cursor: pointer; background: #8fcae5; text-align: center; font-weight: bold;}
+.component_example .item-content{ padding: 10px; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; }
+.component_example .item-code{box-sizing: border-box; background: #F0F0F0; padding: 0; text-indent: 0; position: relative;;width: 100%;}
+.component_example .item-code pre{padding: 0; margin: 0;}
+.component_example .item-code pre code{padding: 0; margin: 0;display: none;}
+.component_example .item-desc{box-sizing: border-box;;text-indent: 0; border-left: 1px solid #ddd; padding: 10px 0 10px 20px;background: #f9fafc; width: 100%}
+ul{margin: 0 0 0 20px; padding: 0;}
+

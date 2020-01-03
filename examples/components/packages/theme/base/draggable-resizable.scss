@@ -1,0 +1,64 @@
+.t_draggable_resizable{
+  &.vdr {
+    position: absolute;
+    box-sizing: border-box;
+  }
+  &.draggable:hover {
+    cursor: move;
+  }
+  .handle {
+    box-sizing: border-box;
+    display: none;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    font-size: 1px;
+    background: none;
+    border: none;
+    z-index: 1;
+  }
+  .handle-tl {
+    top: 0;
+    left: 0;
+    cursor: nw-resize;
+  }
+  .handle-tm {
+    top: 0;
+    left: 50%;
+    margin-left: -10px;
+    cursor: n-resize;
+  }
+  .handle-tr {
+    top: 0;
+    right: 0;
+    cursor: ne-resize;
+  }
+  .handle-ml {
+    top: 50%;
+    margin-top: -10px;
+    left: 0;
+    cursor: w-resize;
+  }
+  .handle-mr {
+    top: 50%;
+    margin-top: -10px;
+    right: 0;
+    cursor: e-resize;
+  }
+  .handle-bl {
+    bottom: 0;
+    left: 0;
+    cursor: sw-resize;
+  }
+  .handle-bm {
+    bottom: 0;
+    left: 50%;
+    margin-left: -10px;
+    cursor: s-resize;
+  }
+  .handle-br {
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+  }
+}

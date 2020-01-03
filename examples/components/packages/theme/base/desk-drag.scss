@@ -1,0 +1,142 @@
+//对 left 的动画
+@mixin transitionLeft($left:1s) {
+  transition:left $left,top $left;
+  -moz-transition:left $left,top $left; /* Firefox 4 */
+  -webkit-transition:left $left,top $left; /* Safari and Chrome */
+  -o-transition:left $left,top $left; /* Opera */
+}
+//算法图
+.t_desk_drag{
+  position: relative; margin: 0px auto; overflow: hidden;
+  height: calc(100% - 25px); background-color: #011a0a;
+  &.isfixed .main_page_item{
+    .module_item_inner{border: none; cursor: default;}
+    .module_item:hover .module_item_inner{ box-shadow: none;}
+  }
+  .main_page_item{
+    position: absolute; width: 100%; height: 624px; left:0; top: 50%; margin: -312px 0 0 0;
+    //锁定时
+    &.small_size{
+      height: 624px;margin: -312px 0 0 0;
+      .main_move_inner .main_move_item{width: 1248px;}
+    }
+    &.drag_stop {
+      @include transitionLeft;
+    }
+    //移动的时候不加动画  鼠标放开的时候加动画
+    &.drag_stop .module_item{
+      @include transitionLeft;
+    }
+    //拖动结束跟拉伸时 移动图层设置为空
+    &.drag_stop ,&.resizing{
+      .main_move_inner .mover_item_inner{background: none;}
+    }
+    //每个菜单单元
+    .module_item{
+      position: absolute; padding: 2px; width: 128px; height: 128px; left: 0 ; top: 0; box-sizing: border-box;
+      &:hover .module_item_inner{
+        box-shadow: 0 0 8px 0 #000000;
+      }
+      &.resizing .module_mask{display: block;}
+    }
+    .module_item_inner{
+      height: 100%; width: 100%; box-sizing: border-box; cursor: move; border: 2px solid rgba(255,255,255,.7);
+      .module_item_icon{
+        font-size: 32px; position: absolute; height: 32px;
+        width: 32px; text-align: center; top: 50%; line-height: 32px; color: #FFFFFF; left: 50%; margin-left: -16px; margin-top: -20px;
+      }
+    }
+    .module_item_tt,.module_item_bottom{position: absolute;line-height: 32px; height: 32px; padding: 0 8px; bottom: 0; left: 0; right: 0; font-size: 16px; color: #fff;box-sizing: border-box;}
+    .module_item_tt{width: 100%; position: relative; padding-right: 0;}
+    .module_item_operate{
+      display: block; float: right; height: 32px;
+      .icon_refresh{padding: 0 10px; display: inline-block; cursor: pointer;
+        &:hover{background: rgba(255,255,255,0.2);}
+      }
+      .module_item_select{
+        vertical-align: top; margin-top: 4px;
+        .zoehis_input_inner{border: none; color: #fff; text-align:right !important;}
+        .zoehis_input .zoehis_input_icon{color: #fff;}
+      }
+    }
+    .module_item_url{height: calc(100% - 32px); position: relative; background: #FFF;}
+    .module_mask{height: 100%; display: none; position: absolute; width: 100%; left: 0; top: 0;}
+
+    &.resizing .main_move_inner .main_move_item{border: 2px solid rgba(255,255,255,0.5);}
+  }
+
+  //设置响应的一些样式
+  .main_move_inner{
+    position: relative; width: 1248px; height: 100%; float: left;
+    .main_move_item{position: relative; width: 1792px; height: 100%; box-sizing: border-box; margin: 0 auto; border: none;}
+    //每个菜单单元
+    .move_item{
+      position: absolute; padding: 2px; width: 128px; height: 128px; left: 0 ; top: 0; box-sizing: border-box;
+      .mover_item_inner{
+        background: rgba(255,255,255,0.2); height: 100%;
+      }
+    }
+
+  }
+  //左右箭头
+  .main_btn{
+    position: fixed; top: 0; bottom: 0; width: 40px;cursor: pointer;
+    &.btn_right{
+      right: 0;
+      &:hover i{color: rgba(255, 255, 255, 1);}
+    }
+    &.btn_left{
+      left: 0;
+      &:hover i{color: rgba(255, 255, 255, 1);}
+    }
+    i{position: absolute; top: 45%; font-weight: bold; font-size: 35px; color: rgba(255, 255, 255, 0.3);}
+  }
+
+  //右键
+  .com_main_drag_menu{
+    position: absolute; left: 150px; top: 260px; background: #2E2E2E; cursor: pointer;
+    .menu_item{font-size: 14PX; color: #FFF; line-height: 28px; margin:0 10px 0 20px;}
+  }
+
+  .drag_page_box{
+    position: absolute; width: 100%; height: 20px; text-align: center;
+    .drag_page_box_inner{display: inline-block; cursor: pointer;
+      li{display: inline-block; width: 50px; height: 6px; padding: 7px 5px; }
+      .selected .drag_page_target{background: #00A3E7;}
+      .drag_page_target{width: 50px; height: 6px; background: rgba(255, 255, 255, 0.2); border-radius: 3px;}
+    }
+  }
+
+  //主页面（组件部分）
+  //空的主题就按1来算
+  &.themeType .main_page_item,&.themeType1 .main_page_item{
+    .dragColor1{background-color: #0078d7;}
+    .dragColor2{background-color: #0bcc4f;}
+    .dragColor3{background-color: #efc200;}
+    .dragColor4{background-color: #ff6666;}
+  }
+  &.themeType2 .main_page_item{
+    .dragColor1{background-color: #3b3635;}
+    .dragColor2{background-color: #1dc474;}
+    .dragColor3{background-color: #885db6;}
+    .dragColor4{background-color: #ec4030;}
+  }
+  &.themeType3 .main_page_item{
+    .dragColor1{background-color: #66d7d1;}
+    .dragColor2{background-color: #0082cd;}
+    .dragColor3{background-color: #fed766;}
+    .dragColor4{background-color: #009fb7;}
+  }
+  &.themeType4 .main_page_item{
+    .dragColor1{background-color: #efc200;}
+    .dragColor2{background-color: #0bcc4f;}
+    .dragColor3{background-color: #acd252;}
+    .dragColor4{background-color: #ff6666;}
+  }
+  &.themeType5 .main_page_item{
+    .dragColor1{background-color: #0078d7;}
+    .dragColor2{background-color: #1dc474;}
+    .dragColor3{background-color: #fed766;}
+    .dragColor4{background-color: #6e70d7;}
+  }
+}
