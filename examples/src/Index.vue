@@ -1,39 +1,79 @@
 <template>
   <div class="contain">
-   <div class="menu">
-     <ul>
-       <li><router-link to="/desk-drag">桌面布局</router-link></li>
-     </ul>
-   </div>
+    <div class="menu">
+      <h1>桌面布局</h1>
+      <ul>
+        <li><button @click='handleClick'>添加块</button> </li>
+      </ul>
+    </div>
     <div class="content">
-        <div class="wrap">
-          <router-view></router-view>
-        </div>
+      <t-desk-drag class="themeType" ref="deskDrag" :width="width" :height='height'
+        @drag-change="dragChangeEn"
+        @drag-delete="dragDeleteEn"
+      ></t-desk-drag>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'his5',
-    data () {
+    name: 'TDeskDragDemo',
+    data(){
       return {
-        
+        width:1366,
+        height:687,
+        dataLength:0
+      };
+    },
+    methods:{
+      dragDeleteEn(avl,arr){
+        this.dataLength = arr.length;
+      },
+      dragChangeEn(arr){
+        this.dataLength = arr.length;
+      },
+      handleClick(){
+        let obj =  {
+          left:0,top:0,width:2,height:2,
+          id:""+new Date().getTime(),viewIndex:0,portletColor:"dragColor"+this.dataLength%4,
+          portletName:"测试"+this.dataLength,portletImage:"iconfont icon-beihuoguanli"
+        };
+        this.$refs.deskDrag.addByItem(obj);
+        this.dataLength++;
+      },
+      resize(){
+        let w = $(window).width()-100;
+        let h = $(window).height();
+        this.width = w;
+        this.height = h;
       }
+    },
+    mounted:function() { //用于高亮显示代码
+      let arr = [
+        {
+          left:0,top:0,width:2,height:2,
+          id:'a1000002',viewIndex:0,portletColor:"dragColor4",
+          portletName:"测试",portletImage:"iconfont icon-beihuoguanli"
+        },
+      ];
+      this.$refs.deskDrag.updateDragPos(arr);
+
+      this.resize();
+      window.addEventListener("resize",this.resize);
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .contain{ display: flex;  flex-flow: row;align-items:stretch;width: 100%; font-size: 15px; height: 100%;overflow: hidden;}
-  .contain .wrap{width: 100%;height: 100%;overflow: auto;display: block;box-sizing: border-box;padding: 15px;}
-  .contain li {  display: list-item;  }
-  .contain  a:link,a:visited,a:hover{ text-decoration:none; outline: none;}
-  .contain ul,li{ list-style:none;}
-  .contain .menu{width: 200px;flex: 0 0 auto; padding: 20px 20px; border-right: 1px solid #ddd; overflow: auto;}
-.contain .content{flex: 1 1 auto;width: 100%;height: 100%;min-width: 800px;}
-.contain .menu li{color:#34495e;margin-top: 5px;line-height: 25px;}
-.contain .menu li:hover a{border-bottom: 2px solid #42b983; }
-  .contain .menu li a:visited ,.contain .menu li a:link{color: #34495e;}
+.contain{
+  display:flex;
+  justify-content: flex-start;
+  height:100%;
+}
+.menu{flex-basis:100px; background:#00acE7;}
+.menu ul{ overflow: hidden; margin:0; padding:10px;} 
+.menu a{white-space: nowrap; color: #000;} 
+.content{flex-grow: 2;}
+
 </style>

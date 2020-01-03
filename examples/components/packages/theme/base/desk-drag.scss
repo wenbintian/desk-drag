@@ -8,7 +8,8 @@
 //算法图
 .t_desk_drag{
   position: relative; margin: 0px auto; overflow: hidden;
-  height: calc(100% - 25px); background-color: #011a0a;
+  height: 100%; background-color: #011a0a;
+  ul{margin: 0; padding: 0;}
   &.isfixed .main_page_item{
     .module_item_inner{border: none; cursor: default;}
     .module_item:hover .module_item_inner{ box-shadow: none;}
@@ -80,7 +81,7 @@
   }
   //左右箭头
   .main_btn{
-    position: fixed; top: 0; bottom: 0; width: 40px;cursor: pointer;
+    position: absolute; top: 0; bottom: 0; width: 40px;cursor: pointer;
     &.btn_right{
       right: 0;
       &:hover i{color: rgba(255, 255, 255, 1);}

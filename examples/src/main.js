@@ -5,6 +5,7 @@ import Index from './Index'
 import router from './router'
 import "./assets/css/reset.css";
 import "./assets/css/common.css";
+import "./assets/iconfont/iconfont.css";
 import "../components/packages/theme/default/index.scss";
 import components from "../components/src";
 

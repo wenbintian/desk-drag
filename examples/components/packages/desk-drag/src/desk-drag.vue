@@ -1,6 +1,6 @@
 <template>
   <!--主要的算法页面-->
-  <div class="t_desk_drag main_page" @mousewheel="mouseWheel" @DOMMouseScroll="mouseWheel">
+  <div class="t_desk_drag main_page" ref='deskDragBox' @mousewheel="mouseWheel" @DOMMouseScroll="mouseWheel">
     <div
       class="main_page_item"
       :class="{'drag_stop':itemDragStop,'resizing':itemResizing}"
@@ -44,10 +44,9 @@
           @dblclick.native.prevent="dragDblClick(dd)"
         >
           <div class="module_item_inner" :class="dd.portletColor || 'dragColor4'">
-            <!--因为桌面打开的url是存在门户的表里，权限菜单的url是时时获取的，所以二者会存在差异，所以这边就不存 his的url(第三方的url)-->
-            <template v-if="dd.portletSystemType!='CS' && dd.portletUrl && (dd.width>=urlMinHeight && dd.height>=urlMinWidth || dd.height>=urlMinHeight && dd.width>=urlMinWidth)">
+            <template v-if="dd.portletUrl && (dd.width>=urlMinHeight && dd.height>=urlMinWidth || dd.height>=urlMinHeight && dd.width>=urlMinWidth)">
               <div class="module_item_tt">
-                <i class="navIcon zoeIconfont" :class="dd.portletImage"></i>
+                <i class="navIcon" :class="dd.portletImage"></i>
                 {{dd.portletName}}
                 <div class="module_item_operate">
                   <i class="zoeIconfont z_refresh_normal icon_refresh" @dblclick.stop @click.stop="moduleItemRefreshEvn"></i>
@@ -62,7 +61,7 @@
               </div>
             </template>
             <template v-else>
-              <i class="zoeIconfont module_item_icon" :class="dd.portletImage || 'z_menuD_normal'"></i>
+              <i class="module_item_icon" :class="dd.portletImage || 'z_menuD_normal'"></i>
               <div class="module_item_bottom ellipsis">{{dd.portletName}}</div>
             </template>
 
@@ -75,13 +74,13 @@
     <div
       class="main_btn btn_right" v-show="currentView+1<moduleData.length"
     ><i
-      class="zoeIconfont z_right_normal1"
+      class="iconfont icon-right"
       @click="turnRightView(true)"
     ></i></div>
     <div
       class="main_btn btn_left" v-show="currentView>0 && mainLeft<0"
     ><i
-      class="zoeIconfont z_left_normal"
+      class="iconfont icon-left"
       @click="turnRightView(false)"
     ></i></div>
 
@@ -1121,21 +1120,17 @@
       //右键
       contextMenu(){
         this.showDragMenu=true;
-        let ww=$(window).width();
-        let wh=$(window).height();
-        if(event.clientX+130>ww){
-          this.rightMenuStyle.left=(ww-130)+'px';
+        let {left,top,width,height} = this.$refs.deskDragBox.getBoundingClientRect();
+        if(event.clientX-left+130>width){
+          this.rightMenuStyle.left=(width-130+left)+'px';
         }else {
-          this.rightMenuStyle.left=event.pageX+'px';
+          this.rightMenuStyle.left=event.pageX-left+'px';
         }
 
-        //壳与浏览器区别
-        let offPos = window.cefQuery ? 0 : 40;
-
-        if(event.clientY+50>wh){
-          this.rightMenuStyle.top=(wh-50)+'px';
+        if(event.clientY-top+50>height){
+          this.rightMenuStyle.top=(height+top-50)+'px';
         }else {
-          this.rightMenuStyle.top=event.pageY-offPos+'px';
+          this.rightMenuStyle.top=event.pageY-top+'px';
         }
       },
       dragClickOutside(){
