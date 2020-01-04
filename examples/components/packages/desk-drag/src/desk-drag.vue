@@ -335,7 +335,23 @@
           this.$emit("drag-change",this.cloneFirstData(this.moduleApiData));
         }
       },
-
+      /**
+      * 供父组件调用
+      * 重置桌面布局
+      * @param {Array} arr: 当前要重新设置的块 
+      **/
+      resetDeskDrag(arr=[]){
+        this.updateDragPos(arr);
+      },
+      /**
+      * 供父组件调用
+      * 添加块数据
+      * @param {Object} obj: 当前要添加的块 
+      **/
+      addDeskDrag(obj){
+        this.moduleApiData.push(obj);
+        this.updateDragPos(this.moduleApiData);
+      },
       //激活块
       activated(vm,dd){
         this.selectModule = Object.assign({},dd);

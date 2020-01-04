@@ -38,7 +38,7 @@
           id:""+new Date().getTime(),viewIndex:0,portletColor:"dragColor"+this.dataLength%4,
           portletName:"测试"+this.dataLength,portletImage:"iconfont icon-beihuoguanli"
         };
-        this.$refs.deskDrag.addByItem(obj);
+        this.$refs.deskDrag.addDeskDrag(obj);
         this.dataLength++;
       },
       resize(){
@@ -56,7 +56,7 @@
           portletName:"测试",portletImage:"iconfont icon-beihuoguanli"
         },
       ];
-      this.$refs.deskDrag.updateDragPos(arr);
+      this.$refs.deskDrag.resetDeskDrag(arr);
 
       this.resize();
       window.addEventListener("resize",this.resize);
