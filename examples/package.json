@@ -14,17 +14,17 @@
     "prod_docker": "node ./build/prod-server.js"
   },
   "dependencies": {
-    "babel-helper-vue-jsx-merge-props": "^2.0.2",
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-vue-jsx": "^3.5.0",
     "formidable": "^1.1.1",
-    "node-sass": "^4.12.0",
     "normalize-wheel": "^1.0.1",
-    "sass-loader": "^6.0.6",
     "vue": "^2.3.3",
     "vue-router": "^2.6.0"
   },
   "devDependencies": {
+    "node-sass": "^4.12.0",
+    "sass-loader": "^6.0.6",
+    "babel-helper-vue-jsx-merge-props": "^2.0.2",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
