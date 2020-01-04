@@ -52,6 +52,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
+          publicPath: '../../', //你实际项目的引用地址前缀
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },

@@ -75,6 +75,6 @@
 .menu h1{font-size:16px;}
 .menu ul{ overflow: hidden; margin:0; padding:5px;} 
 .menu button{padding:2px; margin:0; font-size:12px;} 
-.content{flex-grow: 2; background:url(./assets/images/bg.jpg) left center no-repeat; background-size:100% 100%;}
+.content{flex-grow: 2; background:url("./assets/images/bg.jpg") left center no-repeat; background-size:100% 100%;}
 
 </style>
