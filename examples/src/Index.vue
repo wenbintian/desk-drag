@@ -71,9 +71,10 @@
   justify-content: flex-start;
   height:100%;
 }
-.menu{flex-basis:100px; background:#00acE7;}
-.menu ul{ overflow: hidden; margin:0; padding:10px;} 
-.menu a{white-space: nowrap; color: #000;} 
-.content{flex-grow: 2;}
+.menu{flex-basis:50px; background:#00acE7; text-align:center;}
+.menu h1{font-size:16px;}
+.menu ul{ overflow: hidden; margin:0; padding:5px;} 
+.menu button{padding:2px; margin:0; font-size:12px;} 
+.content{flex-grow: 2; background:url(./assets/images/bg.jpg) left center no-repeat; background-size:100% 100%;}
 
 </style>

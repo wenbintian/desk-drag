@@ -8,7 +8,7 @@
 //算法图
 .t_desk_drag{
   position: relative; margin: 0px auto; overflow: hidden;
-  height: 100%; background-color: #011a0a;
+  height: 100%;
   ul{margin: 0; padding: 0;}
   &.isfixed .main_page_item{
     .module_item_inner{border: none; cursor: default;}
