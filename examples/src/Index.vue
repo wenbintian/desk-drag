@@ -34,7 +34,7 @@
       },
       handleClick(){
         let obj =  {
-          left:0,top:0,width:2,height:2,
+          left:0,top:0,width:1,height:1,
           id:""+new Date().getTime(),viewIndex:0,portletColor:"dragColor"+this.dataLength%4,
           portletName:"测试"+this.dataLength,portletImage:"iconfont icon-beihuoguanli"
         };
@@ -51,7 +51,7 @@
     mounted:function() { //用于高亮显示代码
       let arr = [
         {
-          left:0,top:0,width:2,height:2,
+          left:0,top:0,width:1,height:1,
           id:'a1000002',viewIndex:0,portletColor:"dragColor4",
           portletName:"测试",portletImage:"iconfont icon-beihuoguanli"
         },

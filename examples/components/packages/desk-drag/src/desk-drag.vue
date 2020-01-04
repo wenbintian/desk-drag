@@ -291,18 +291,18 @@
         let diffWidth = this.width-this.minWindowWidth;
         let diffHeight = this.height-this.minWindowHeight;
         if(diffWidth<=0){
-          this.rectWidth=12;
+          this.rectWidth=8;
           this.offLeft = (this.minWindowWidth-this.rectWidth*this.blockWidth)/2;
           this.tarWidth = this.minWindowWidth;
         }else {
-          this.rectWidth=12+parseInt(diffWidth/this.blockWidth);
+          this.rectWidth=8+parseInt(diffWidth/this.blockWidth);
           this.offLeft = (this.width-this.rectWidth*this.blockWidth)/2;
           this.tarWidth = this.width;
         }
         if(diffHeight<=0){
-          this.rectHeight=6;
+          this.rectHeight=4;
         }else {
-          this.rectHeight=6+parseInt(diffHeight/this.blockWidth);
+          this.rectHeight=4+parseInt(diffHeight/this.blockWidth);
         }
       },
       //更新组件信息
@@ -1152,8 +1152,8 @@
     },
     created(){
       this.isMouserWheel = false;
-      this.minWindowWidth = 1346;
-      this.minWindowHeight = 686;
+      this.minWindowWidth = 930;
+      this.minWindowHeight = 478;
       //必须先重置一下 重新创建移动层
       this.monitorWidthHeight();
       this.createSpaceRect();
