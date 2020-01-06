@@ -15,7 +15,8 @@
   </div>
 </template>
 
-<script>
+<script type="text/babel">
+  import {sortExtensionsByName} from "../src/assets/js/lsTest.js";
   export default {
     name: 'TDeskDragDemo',
     data(){
@@ -49,6 +50,17 @@
       }
     },
     mounted:function() { //用于高亮显示代码
+      let arr1 = [
+        {firstName: '123', lastName: 'qwe', ext: '234', extType: 'FaxUser'},
+        {firstName: '23', lastName: 'qwe', ext: '234', extType: 'FaxUser'},
+        {firstName: '123', lastName: 'aq', ext: '234', extType: 'FaxUser'},
+        {firstName: '123', lastName: 'aq', ext: 'ww', extType: 'FaxUser'},
+      ]
+      console.log(sortExtensionsByName(arr1))
+
+
+
+
       let arr = [
         {
           left:0,top:0,width:1,height:1,
