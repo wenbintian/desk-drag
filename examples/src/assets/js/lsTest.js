@@ -1,4 +1,10 @@
-import {isNumber, isArray} from "./lsUtil.js";
+const isNumber = function(num){
+  return Object.prototype.toString.call(num) === "[object Number]";
+}
+const isArray = function(data){
+  return Object.prototype.toString.call(data) === "[object Array]";
+}
+
 /**
   extensions is an Array and each item has such format:
   {firstName: 'xxx', lastName: 'xxx', ext: 'xxx', extType: 'xxx'}
@@ -191,6 +197,17 @@ export const averageByQuarter = function(saleItems){
   return Sale.averageByQuarter();
 }
 
+let arr3 = [
+	{month: 5, date:2,transationId:'11', salePrice: 20},
+	{month: 1, date:2,transationId:'11', salePrice: 30.2222},
+	{month: 6, date:2,transationId:'16', salePrice: 65.2222123},
+	{month: 2, date:2,transationId:'16', salePrice: 5.11111},
+];
+console.log("sumByQuarter",sumByQuarter(arr3))
+console.log("averageByQuarter",averageByQuarter(arr3))
+
+
+
 /**
   Question 5: please create a tool to generate Sequence
   Expected to be used like:
@@ -227,10 +244,14 @@ class Sequence {
   }
 }
 
-export const next = function(){
-  let Seq = new Sequence();
-  return Seq.next();
-}
+var sequence1 = new Sequence();
+console.log(sequence1.next());
+console.log(sequence1.next());
+
+
+var sequence2 = new Sequence();
+console.log(sequence2.next());
+console.log(sequence2.next());
 
 /**
     Question 6:
@@ -242,12 +263,14 @@ function getUnUsedKeys(allKeys, usedKeys) {
 	if(!isArray(allKeys) || !isArray(usedKeys)){
     throw Error("the first parameter and the second parameter should be a Array.");
   }
-  allKeys.filter(item=>{
+  return allKeys.filter(item=>{
     return usedKeys.indexOf(item)===-1;
   });
-  return allKeys;
 }
 
 // example
 console.log(getUnUsedKeys([1,2,3],[2,4]));
+//==> [1,3]
+console.log(getUnUsedKeys([1,2,9,4,5,6,5],[4,9]));
+//==> [1,2,5,6,5]
 
