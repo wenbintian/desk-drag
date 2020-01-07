@@ -6,17 +6,20 @@
         <li><button @click='handleClick'>添加块</button> </li>
       </ul>
     </div>
-    <div class="content">
+    <!-- <div class="content">
       <t-desk-drag class="themeType" ref="deskDrag" :width="width" :height='height'
         @drag-change="dragChangeEn"
         @drag-delete="dragDeleteEn"
       ></t-desk-drag>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script type="text/babel">
-  import {sortExtensionsByName} from "../src/assets/js/lsTest.js";
+  import {
+    sortExtensionsByName,sortExtensionsByExtType, sumByQuarter,
+    averageByQuarter,next
+  } from "../src/assets/js/lsTest.js";
   export default {
     name: 'TDeskDragDemo',
     data(){
@@ -51,16 +54,30 @@
     },
     mounted:function() { //用于高亮显示代码
       let arr1 = [
-        {firstName: '123', lastName: 'qwe', ext: '234', extType: 'FaxUser'},
-        {firstName: '23', lastName: 'qwe', ext: '234', extType: 'FaxUser'},
+        {firstName: '123', lastName: 'qwe', ext: '234', extType: 'DigitalUser'},
         {firstName: '123', lastName: 'aq', ext: '234', extType: 'FaxUser'},
-        {firstName: '123', lastName: 'aq', ext: 'ww', extType: 'FaxUser'},
+        {firstName: '23', lastName: 'qwe', ext: '234', extType: 'VirtualUser'},
+        {firstName: '123', lastName: 'aq', ext: 'ww', extType: 'Dept'},
+        {firstName: '123', lastName: 'aq', ext: 'ww', extType: 'AO'},
       ]
+      let arr2 = JSON.parse(JSON.stringify(arr1))
       console.log(sortExtensionsByName(arr1))
+      console.log(sortExtensionsByExtType(arr2,true))
+
+      let arr3 = [
+        {month: 5, date:2,transationId:'11', salePrice: 20},
+        {month: 1, date:2,transationId:'11', salePrice: 30.2222},
+        {month: 6, date:2,transationId:'16', salePrice: 65.2222123},
+        {month: 2, date:2,transationId:'16', salePrice: 5.11111},
+      ];
+      console.log("sumByQuarter",sumByQuarter(arr3))
+      console.log("averageByQuarter",averageByQuarter(arr3))
+      console.log("getNum2",next())
+      console.log("getNum2",next())
 
 
 
-
+return;
       let arr = [
         {
           left:0,top:0,width:1,height:1,
